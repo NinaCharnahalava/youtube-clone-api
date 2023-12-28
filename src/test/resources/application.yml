@@ -1,0 +1,56 @@
+server:
+  port: 8099
+  error:
+    include-message: always
+    include-exception: true
+
+spring:
+  application:
+    name: youtube-clone1
+  config:
+    activate:
+      on-profile: TEST
+
+  mvc:
+    hidden-method:
+      filter:
+        enabled: true
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: https://youtube-clone-test-auth.eu.auth0.com/
+      okta:
+        oauth2:
+          issuer: https://youtube-clone-test-auth.eu.auth0.com/
+          audience: http://localhost:8080
+
+  cloud:
+    aws:
+      region:
+        static: eu-west-2
+      stack:
+        auto: false
+
+  logging:
+    level:
+      com.auth0.example: INFO
+      org.springframework.web: DEBUG
+      org.springframework.security: DEBUG
+      org.springframework.boot: DEBUG
+
+  auth0:
+    userinfoEndpoint: https://youtube-clone-test-auth.eu.auth0.com/userinfo
+
+  authConfig:
+    authUrl: https://youtube-clone-test-auth.eu.auth0.com/oauth/token
+    clientId: ILXqCQCC4ytGahEQhgW3JhuPWjsZFBwq
+    clientSecret: _Vyyp5j91Vhfhw1XnmNZOPcfOBaYvOfwEE2rZDFSFJVlAQ6A8pF6RQVpACX7tntG
+    audience: http://localhost:8080
+    grantType: client_credentials

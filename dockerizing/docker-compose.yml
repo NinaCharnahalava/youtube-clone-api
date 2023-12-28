@@ -1,0 +1,39 @@
+version: '3.1'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - db-youtube-clone1:/data/db
+
+  youtube-clone1:
+    image: youtube-clone1
+    container_name: youtube-clone1
+    build:
+      context: ../
+      dockerfile: dockerizing/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      MONGO_URI: mongodb://root:mongo@mongo:27017/
+    depends_on:
+      - mongo
+
+volumes:
+   db-youtube-clone1:
+     driver: local
+
+
+
+
+
+
+
+

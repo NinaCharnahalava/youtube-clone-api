@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.1.5</version>
+		<relativePath/>
+	</parent>
+
+	<groupId>com.programming.techie</groupId>
+	<artifactId>youtube-clone1</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>youtube-clone1</name>
+	<description>Youtube Clone Project</description>
+
+	<properties>
+		<java.version>17</java.version>
+		<springdoc-openapi-starter-webmvc-api.version>2.3.0</springdoc-openapi-starter-webmvc-api.version>
+		<servlet-api.version>3.0-alpha-1</servlet-api.version>
+		<spring-cloud-aws-context.version>2.2.6.RELEASE</spring-cloud-aws-context.version>
+		<spring-cloud-aws-autoconfigure.version>2.2.6.RELEASE</spring-cloud-aws-autoconfigure.version>
+		<aws-java-sdk-s3.version>1.12.593</aws-java-sdk-s3.version>
+		<spring-security-core.version>6.2.0</spring-security-core.version>
+		<mvc-auth-commons.version>1.10.0</mvc-auth-commons.version>
+		<snakeyaml.version>2.2</snakeyaml.version>
+		<backport-util-concurrent.version>3.1</backport-util-concurrent.version>
+		<lombok.version>1.18.30</lombok.version>
+		<mapstruct.version>1.5.5.Final</mapstruct.version>
+		<junit-jupiter-api.version>5.10.1</junit-jupiter-api.version>
+		<testcontainers-junit-jupiter.version>1.19.3</testcontainers-junit-jupiter.version>
+		<testconteiners-core.version>1.19.3</testconteiners-core.version>
+		<easymock.version>5.2.0</easymock.version>
+		<mockito-core.version>3.12.4</mockito-core.version>
+		<maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+		<lombok-mapstruct-bindings.version>0.2.0</lombok-mapstruct-bindings.version>
+	</properties>
+
+	<dependencies>
+		<!--WEB-->
+		<!--Starter for building web, including RESTful, applications using Spring MVC.
+        Uses Tomcat as the default embedded container-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!--Integration of OpenAPI(Swagger). UI for visualizing and testing OpenAPI documentation-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-api</artifactId>
+			<version>${springdoc-openapi-starter-webmvc-api.version}</version>
+		</dependency>
+
+		<!--Starter for interacting with servlet containers such as Apache Tomcat or Jetty-->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>${servlet-api.version}</version>
+			<scope>provided</scope>
+		</dependency>
+
+		<!--AWS-->
+		<!--Integration of Spring Cloud with Amazon Web Services (AWS) for working in cloud environments.
+		Provide context beans and functionality for working with AWS-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-aws-context</artifactId>
+			<version>${spring-cloud-aws-context.version}</version>
+		</dependency>
+
+		<!--Autoconfiguration for Spring Cloud AWS, which provides seamless integration of
+		Spring application with Amazon Web Services (AWS)-->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-aws-autoconfigure</artifactId>
+			<version>${spring-cloud-aws-autoconfigure.version}</version>
+		</dependency>
+
+		<!--Starter for providing classes and methods for interacting with Amazon S3 from Spring Boot application.
+		The ability to use these classes to upload, download, and manage objects in the Amazon S3 bucket-->
+		<dependency>
+			<groupId>com.amazonaws</groupId>
+			<artifactId>aws-java-sdk-s3</artifactId>
+			<version>${aws-java-sdk-s3.version}</version>
+		</dependency>
+
+		<!--SECURITY-->
+		<!--Starter to implement basic security in a Spring Boot application.
+		Ability to add authentication, authorization and other security features to the application-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<!--Starter to provide the core functionality of Spring Security:
+		classes for user representation, roles, authentication, authorization, session management-->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring-security-core.version}</version>
+		</dependency>
+
+		<!--OAUTH 2.0-->
+		<!--Starter for creating an OAuth 2.0 Resource Server using Spring Boot.
+		Because the Resource Server in the context of OAuth 2.0 is a protected resource
+		that client applications can request access to by providing the correct access tokens-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+		</dependency>
+
+		<!--Starter for providing general tools and functionality for working with
+		authentication and authorization in web applications based on
+		the MVC (Model-View-Controller) framework-->
+		<dependency>
+			<groupId>com.auth0</groupId>
+			<artifactId>mvc-auth-commons</artifactId>
+			<version>${mvc-auth-commons.version}</version>
+		</dependency>
+
+		<!--DATABASE-->
+		<!--Starter for using Spring Data JPA with Hibernate-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+
+		<!--Standard set of libraries and settings for integrating MongoDB
+		with a Spring Boot project-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb</artifactId>
+		</dependency>
+
+		<!--DATA PROCESSING-->
+		<!--Starter for using YAML Ain't Markup Language for processing YAML files-->
+		<dependency>
+			<groupId>org.yaml</groupId>
+			<artifactId>snakeyaml</artifactId>
+			<version>${snakeyaml.version}</version>
+		</dependency>
+
+		<!--UTILS-->
+		<!--Starter for providing additional utilities for working with threads and concurrency in Java-->
+		<dependency>
+			<groupId>backport-util-concurrent</groupId>
+			<artifactId>backport-util-concurrent</artifactId>
+			<version>${backport-util-concurrent.version}</version>
+		</dependency>
+
+		<!--Starter for using Java Bean Validation with Hibernate Validator-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		<!--Spice up your java: Automatic Resource Management, automatic generation of getters, setters, equals,
+         hashCode and toString, and more!-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<version>${lombok.version}</version>
+			<scope>provided</scope>
+			<optional>true</optional>
+		</dependency>
+
+		<!--An annotation processor for generating type-safe bean mappers-->
+		<dependency>
+			<groupId>org.mapstruct</groupId>
+			<artifactId>mapstruct</artifactId>
+			<version>${mapstruct.version}</version>
+		</dependency>
+
+		<!--TESTS-->
+		<!--Starter for testing Spring Boot applications with libraries including JUnit Jupiter, Hamcrest and Mockito-->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>org.junit.vintage</groupId>
+					<artifactId>junit-vintage-engine</artifactId>
+				</exclusion>
+			</exclusions>
+		</dependency>
+
+		<!--JUnit Jupiter is the API for writing tests using JUnit 5-->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit-jupiter-api.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--Module "junit-jupiter" of JUnit 5-->
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${testcontainers-junit-jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--Isolated container management for Java code testing-->
+		<dependency>
+			<groupId>org.testcontainers</groupId>
+			<artifactId>testcontainers</artifactId>
+			<version>${testconteiners-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--EasyMock. Framework for creating mock objects for testing components in isolation-->
+		<dependency>
+			<groupId>org.easymock</groupId>
+			<artifactId>easymock</artifactId>
+			<version>${easymock.version}</version>
+			<scope>test</scope>
+		</dependency>
+
+		<!--Mockito. Framework for creating mock objects and testing using the mocking approach in tests-->
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-core</artifactId>
+			<version>${mockito-core.version}</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<builder>paketobuildpacks/builder-jammy-base:latest</builder>
+					</image>
+					<excludes>
+						<exclude>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+						</exclude>
+					</excludes>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<release>${java.version}</release>
+					<!--!!!KEEP THIS ORDER!!!-->
+					<annotationProcessorPaths>
+						<path>
+							<groupId>org.mapstruct</groupId>
+							<artifactId>mapstruct-processor</artifactId>
+							<version>${mapstruct.version}</version>
+						</path>
+
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok</artifactId>
+							<version>${lombok.version}</version>
+						</path>
+
+						<path>
+							<groupId>org.projectlombok</groupId>
+							<artifactId>lombok-mapstruct-binding</artifactId>
+							<version>${lombok-mapstruct-bindings.version}</version>
+						</path>
+
+						<path>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-configuration-processor</artifactId>
+							<version>${project.parent.version}</version>
+						</path>
+					</annotationProcessorPaths>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>
